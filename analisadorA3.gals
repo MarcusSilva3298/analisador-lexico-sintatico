@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><gals_file><options_list><option><name>scanner.gen</name><value>true</value></option><option><name>parser.gen</name><value>true</value></option><option><name>scanner.sensitive</name><value>true</value></option><option><name>scanner.name</name><value>Lexico</value></option><option><name>parser.name</name><value>Sintatico</value></option><option><name>semantic.name</name><value>Semantico</value></option><option><name>package</name><value/></option><option><name>language</name><value>java</value></option><option><name>language</name><value>java</value></option><option><name>parser</name><value>SLR</value></option><option><name>table.scanner</name><value>full</value></option></options_list><data><definitions>DIGITO:[0-9]
+CARACTER: [a-zA-Z]
+QUEBRA_LN: \n
+ESPACO_BRC: \ 
+OP_MAIS: "+"
+OP_SUBT: "-"
+OP_DIV: "/"
+OP_MULT: "*"
+P_RESERV_SCAN: scanf
+P_RESERV_PRINT: printf
+P_RESERV_INT: int
+IG: "="
+PONTV: ";"
+ABRIR_P: \(
+FECHAR_P: \)
+VIRG: ","
+STR_DELIMIT: \"</definitions><tokens>RESERV_SCAN: {P_RESERV_SCAN}
+RESERV_PRINT: {P_RESERV_PRINT}
+RESERV_INT: {P_RESERV_INT}
+
+IDENTIFICADOR:{CARACTER}({CARACTER}|{DIGITO})*
+INT:{DIGITO}+
+STR: {STR_DELIMIT}(.)*{STR_DELIMIT}
+
+DELIMITADOR_P_AB: {ABRIR_P}
+DELIMITADOR_P_FE: {FECHAR_P}
+VIRG: {VIRG}
+
+SOMA: {OP_MAIS}
+SUBT: {OP_SUBT}
+DIV: {OP_DIV}
+MULT: {OP_MULT}
+
+QUEBRA_LINHA: {QUEBRA_LN}
+ESPACO_BRANCO: {ESPACO_BRC}
+
+ATRIBUICAO: {IG}
+
+PONTO_V: {PONTV}</tokens><non_terminals>&lt;INICIO&gt;
+&lt;COMANDO&gt;
+&lt;DECLARACAO&gt;
+&lt;PRINTF&gt;
+&lt;SCANF&gt;
+&lt;VAR_PRINTF&gt;
+&lt;FIM_PRINTF&gt;
+&lt;OPERACAO&gt;
+&lt;PRIORIDADE_3&gt;
+&lt;PRIORIDADE_2&gt;
+&lt;PRIORIDADE_1&gt;
+&lt;IDENTIFICACAO&gt;</non_terminals><grammar>&lt;INICIO&gt; ::= &lt;INICIO&gt; &lt;COMANDO&gt; | &lt;COMANDO&gt;;
+
+&lt;COMANDO&gt; ::= &lt;DECLARACAO&gt; | &lt;PRINTF&gt; | &lt;SCANF&gt; | &lt;OPERACAO&gt;;
+
+&lt;DECLARACAO&gt; ::= RESERV_INT &lt;IDENTIFICACAO&gt;; 
+&lt;IDENTIFICACAO&gt; ::= ESPACO_BRANCO IDENTIFICADOR #9 VIRG &lt;IDENTIFICACAO&gt; | ESPACO_BRANCO IDENTIFICADOR #10 PONTO_V QUEBRA_LINHA;
+
+&lt;PRINTF&gt; ::= RESERV_PRINT DELIMITADOR_P_AB &lt;VAR_PRINTF&gt; DELIMITADOR_P_FE &lt;FIM_PRINTF&gt;;
+&lt;VAR_PRINTF&gt; ::= STR | IDENTIFICADOR #8; 
+&lt;FIM_PRINTF&gt; ::= PONTO_V QUEBRA_LINHA | PONTO_V;
+
+&lt;SCANF&gt; ::= RESERV_SCAN DELIMITADOR_P_AB IDENTIFICADOR #7 DELIMITADOR_P_FE PONTO_V QUEBRA_LINHA; 
+
+&lt;OPERACAO&gt; ::= IDENTIFICADOR ATRIBUICAO &lt;PRIORIDADE_3&gt; PONTO_V QUEBRA_LINHA;
+&lt;PRIORIDADE_3&gt; ::= &lt;PRIORIDADE_3&gt; SOMA &lt;PRIORIDADE_2&gt; #6
+		| &lt;PRIORIDADE_3&gt; SUBT &lt;PRIORIDADE_2&gt; #5
+		| &lt;PRIORIDADE_2&gt;;
+&lt;PRIORIDADE_2&gt; ::= &lt;PRIORIDADE_2&gt; MULT &lt;PRIORIDADE_1&gt; #4
+		| &lt;PRIORIDADE_2&gt; DIV &lt;PRIORIDADE_1&gt; #3
+		| &lt;PRIORIDADE_1&gt;;
+&lt;PRIORIDADE_1&gt; ::= DELIMITADOR_P_AB &lt;PRIORIDADE_3&gt; DELIMITADOR_P_FE
+		| INT #2
+		| IDENTIFICADOR #1;</grammar></data></gals_file>
