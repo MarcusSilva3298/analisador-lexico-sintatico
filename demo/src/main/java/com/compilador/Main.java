@@ -1,6 +1,7 @@
-package demo.src.main.java.com.compilador;
+package com.compilador;
 
-import demo.src.main.java.com.compilador.gals.*;
+import com.compilador.gals.*;
+import com.compilador.gals.Semantico;
 
 public class Main {
 

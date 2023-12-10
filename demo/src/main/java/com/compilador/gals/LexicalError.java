@@ -1,13 +1,12 @@
-package demo.src.main.java.com.compilador.gals;
-public class LexicalError extends AnalysisError
-{
-    public LexicalError(String msg, int position)
-	 {
-        super(msg, position);
-    }
+package com.compilador.gals;
 
-    public LexicalError(String msg)
-    {
-        super(msg);
-    }
+public class LexicalError extends AnalysisError {
+
+  public LexicalError(String msg, int position) {
+    super(msg, position);
+  }
+
+  public LexicalError(String msg) {
+    super(msg);
+  }
 }

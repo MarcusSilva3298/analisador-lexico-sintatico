@@ -1,4 +1,4 @@
-package demo.src.main.java.com.compilador.gals;
+package com.compilador.gals;
 
 import java.util.HashMap;
 import java.util.Map;

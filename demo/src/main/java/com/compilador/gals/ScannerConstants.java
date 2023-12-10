@@ -1,4 +1,4 @@
-package demo.src.main.java.com.compilador.gals;
+package com.compilador.gals;
 
 public interface ScannerConstants {
   int[][] SCANNER_TABLE = {

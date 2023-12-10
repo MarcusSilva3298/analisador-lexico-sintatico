@@ -1,13 +1,12 @@
-package demo.src.main.java.com.compilador.gals;
-public class SyntaticError extends AnalysisError
-{
-    public SyntaticError(String msg, int position)
-	 {
-        super(msg, position);
-    }
+package com.compilador.gals;
 
-    public SyntaticError(String msg)
-    {
-        super(msg);
-    }
+public class SyntaticError extends AnalysisError {
+
+  public SyntaticError(String msg, int position) {
+    super(msg, position);
+  }
+
+  public SyntaticError(String msg) {
+    super(msg);
+  }
 }
